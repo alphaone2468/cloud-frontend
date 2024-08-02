@@ -10,7 +10,12 @@ export default function Home() {
   }, []);
 
   async function getdata() {
-    let result = await fetch("https://backend-nai0.onrender.com/api/v1/getdata");
+    let result = await fetch("https://backend-nai0.onrender.com/api/v1/getdata",{
+      headers: {
+        'Content-Type': "application/json",
+
+      }
+    });
     result = await result.json();
     setdata(result);
     console.log(result);

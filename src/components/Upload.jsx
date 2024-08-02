@@ -59,15 +59,15 @@ export default function Upload() {
   }
 
   return (
-    <div style={styles.container}>
-      <div style={styles.uploadSection}>
-      <input
+    <div className="upload-container">
+      <div className="upload-section">
+        <input
           type="text"
           placeholder="Title (max 50 characters)"
           maxLength={50}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          style={styles.textInput}
+          className="upload-text-input"
         />
         
         <textarea
@@ -75,7 +75,7 @@ export default function Upload() {
           maxLength={200}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          style={styles.textArea}
+          className="upload-text-area"
         />
         <h2>Upload Image</h2>
         <input 
@@ -84,17 +84,17 @@ export default function Upload() {
           id="file-upload-img" 
           accept=".jpg,.jpeg,.png" 
           onChange={callMe} 
-          style={styles.inputFile}
+          className="upload-input-file"
         />
         <img 
           src={fileImg} 
           alt="Preview" 
           id="showimage" 
-          style={{ ...styles.imagePreview, display: fileImg ? 'block' : 'none' }} 
+          className={`upload-image-preview ${fileImg ? 'visible' : 'hidden'}`} 
         />
       </div>
 
-      <form onSubmit={handleOnClickSubmit1} style={styles.uploadSection}>
+      <form onSubmit={handleOnClickSubmit1} className="upload-section">
         <h2>Upload Video</h2>
         <input 
           type="file" 
@@ -102,19 +102,17 @@ export default function Upload() {
           id="file-upload-vid" 
           accept=".mp4" 
           onChange={callMe1} 
-          style={styles.inputFile}
+          className="upload-input-file"
         />
         {fileVid && (
           <video 
             controls 
             src={fileVid} 
-            style={styles.videoPreview} 
+            className="upload-video-preview" 
           />
         )}
         
-        
-
-        <button type="submit" style={styles.submitButton}>Submit</button>
+        <button type="submit" className="upload-submit-button">Submit</button>
 
         {isLoading && <p id="uploadingMsg">Uploading ...</p>}
         {isUploaded && <p id="uploadingMsg">Uploaded Successfully ...</p>}
@@ -122,71 +120,3 @@ export default function Upload() {
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-    fontFamily: 'Arial, sans-serif',
-    backgroundColor: '#f7f7f7',
-    borderRadius: '8px',
-    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-    maxWidth: '500px',
-    margin: '0 auto',
-  },
-  uploadSection: {
-    width: '100%',
-    marginBottom: '20px',
-    textAlign: 'center',
-  },
-  inputFile: {
-    marginTop: '10px',
-    padding: '10px',
-    borderRadius: '4px',
-    border: '1px solid #ccc',
-    width: '100%',
-    cursor: 'pointer',
-  },
-  imagePreview: {
-    marginTop: '20px',
-    maxWidth: '100%',
-    borderRadius: '8px',
-  },
-  videoPreview: {
-    marginTop: '20px',
-    maxWidth: '100%',
-    borderRadius: '8px',
-  },
-  textInput: {
-    marginTop: '20px',
-    padding: '10px',
-    borderRadius: '4px',
-    border: '1px solid #ccc',
-    width: '100%',
-    fontSize: '16px',
-  },
-  textArea: {
-    marginTop: '20px',
-    padding: '10px',
-    borderRadius: '4px',
-    border: '1px solid #ccc',
-    width: '100%',
-    height: '100px',
-    fontSize: '16px',
-    resize: 'none',
-  },
-  submitButton: {
-    marginTop: '20px',
-    padding: '10px 50px',
-    borderRadius: '10px',
-    border: 'none',
-    backgroundColor: '#28a745',
-    color: 'white',
-    fontSize: '16px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s',
-    backgroundColor:"#264653"
-  }
-};
